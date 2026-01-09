@@ -36,12 +36,11 @@ function playSequence(freqs, step = 0.08, type = 'sine', volume = 0.13) {
 function playSound(name) {
     if (_audioCtx.state === 'suspended') _audioCtx.resume().catch(() => {});
     switch (name) {
-        case 'dice':
         case 'diceRoll':
             playSequence([240, 280, 320, 360, 300], 0.05, 'triangle', 0.08);
             break;
-        case 'move':
-            playTone(440, 0.12, 'sine', 0, 0.12);
+        case 'moveStep':
+            playTone(520, 0.12, 'triangle', 0, 0.10);
             break;
         case 'ladder':
             playSequence([440, 560, 700], 0.12, 'sawtooth', 0.14);
@@ -272,13 +271,12 @@ function showPopup(type, message) {
             document.getElementById('PlayerTurn').innerHTML=txt;
             document.getElementById('PlayerTurn').style=boxcolor;
             // play dice roll sound
-            try{ playSound('dice'); }catch(e){console.error(e)}
+            // use 'diceRoll' (do not use the old 'dice' alias)
+            try{ playSound('diceRoll'); }catch(e){console.error(e)}
             turn(player,diceValue);    
             document.getElementById('diceImg').src=diceImg;
         },2500)
          diceValue=Math.floor(Math.random()* 6 + 1 );
-        // subtle audio cue for dice generated (in case immediate)
-        try{ playSound('diceRoll'); }catch(e){console.error(e)}
          timer=3000;
          setTimeout(() => {
              document.getElementById("play").disabled = false;
@@ -414,8 +412,10 @@ function showPopup(type, message) {
              document.getElementById(newId).style.width='40%';       
                   
         },100);
-           // play move sound for each step (softly)
-           try{ playSound('move'); }catch(e){console.error(e)}
+           // play move sound for this movement only if player was already on board
+           try{
+               if(oldTarget>0) playSound('moveStep');
+           }catch(e){console.error(e)}
         // id='img'+position;
          console.log("hello "+player+" : "+oldId);
         // document.getElementById(newId).src=imgsrc;
@@ -642,7 +642,7 @@ function highlightPositions(){
         document.getElementById(newId).style.width='40%';
               // update highlights after ladder/snake move
               try{ highlightPositions(); }catch(e){console.error(e)}
-              try{ playSound('move'); }catch(e){console.error(e)}
+              try{ if(typeof oldPosition !== 'undefined' && oldPosition>0) playSound('moveStep'); }catch(e){console.error(e)}
  }
  const checkWinner= (position,player)=> {
      if(position==100)
