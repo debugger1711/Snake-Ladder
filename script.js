@@ -37,7 +37,7 @@ function playSound(name) {
     if (_audioCtx.state === 'suspended') _audioCtx.resume().catch(() => {});
     switch (name) {
         case 'diceRoll':
-            playSequence([240, 280, 320, 360, 300], 0.05, 'triangle', 0.08);
+            playSequence([240, 280, 320, 360, 300], 0.05, 'triangle', 0.15);
             break;
         case 'moveStep':
             playTone(520, 0.12, 'triangle', 0, 0.10);
