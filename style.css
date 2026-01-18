@@ -157,21 +157,14 @@
     color: black; 
     border: 2px solid darkred;
   }
-  #num{
-    background-color:darkred; /* Green */
-    border: none;
+  .playBtn {
+    background-color: skyblue !important;
+    color: black;
+  }
+  .resetBtn {
+    background-color: maroon !important;
     color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 14px;
-    margin: 4px 2px;
-    cursor: pointer;
-    background-color: white; 
-    color: black; 
-    border: 2px solid darkred
-}
+  }
 #PlayerTurn
 {
     background-color:darkred;
@@ -269,7 +262,7 @@
       width: auto;
       margin-bottom: 10px;
     }
-    .button, .btnStyle, #num, #PlayerTurn {
+    .button, .btnStyle, #PlayerTurn {
       padding: 10px 20px;
       font-size: 12px;
     }
@@ -293,7 +286,7 @@
       height: 80px;
       width: 80px;
     }
-    .button, .btnStyle, #num, #PlayerTurn {
+    .button, .btnStyle, #PlayerTurn {
       padding: 8px 16px;
       font-size: 11px;
     }
