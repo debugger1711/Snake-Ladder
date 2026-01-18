@@ -244,6 +244,11 @@ function showPopup(type, message) {
  
 
  document.getElementById('play').addEventListener("click",randomNumberGenerator);
+ document.getElementById('reset').addEventListener("click", resetGame);
+
+ function resetGame() {
+     location.reload();
+ }
 
  function randomNumberGenerator() {
      document.getElementById('play').disabled=true;
@@ -267,7 +272,6 @@ function showPopup(type, message) {
         }
         value = setTimeout(() => { 
             document.getElementById('diceImg').src=diceImg;
-            document.getElementById('num').innerHTML=diceValue;
             document.getElementById('PlayerTurn').innerHTML=txt;
             document.getElementById('PlayerTurn').style=boxcolor;
             // play dice roll sound
